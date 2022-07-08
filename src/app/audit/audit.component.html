@@ -1,0 +1,36 @@
+<h1>Hi {{currentUser.firstName}}!</h1>
+<p>You're logged in with Angular 8!!</p>
+<h3>All login audit :</h3>
+<select class="custom-select" [(ngModel)]="dateFormat" >
+    <option value=true>12 Hours</option>
+    <option value=false>24 Hours</option>
+  </select>
+<table class="table">
+    <thead>
+        <tr>
+            <th>User</th>
+            <th>Id</th>
+            <th>Login</th>
+            <th>Logout</th>
+            <th>IP</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let audit of data">
+            <td>{{audit.user}}</td>
+            <td>{{audit._id}}</td>
+            <td>{{dateFormat===true?(audit.loginTime| date:'dd/MM/yyyy hh:mm a'):(audit.loginTime| date:'dd/MM/yyyy HH:mm')}}
+            </td>
+            <td>{{dateFormat===true?(audit.logoutTime| date:'dd/MM/yyyy hh:mm a'):(audit.logoutTime| date:'dd/MM/yyyy HH:mm')}}
+            </td>
+            <td>{{audit.ip}}</td>
+        </tr>
+    </tbody>
+</table>
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+      <li class="page-item" (click)="pre()"><a class="page-link" >Previous</a></li>
+      <li class="page-item" (click)="next()"><a class="page-link" >Next</a></li>
+    </ul>
+  </nav>
